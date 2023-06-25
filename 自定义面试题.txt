@@ -1,0 +1,47 @@
+闭包：存在的意义：延长变量的生命周期  创建私有环境
+
+事件模型：标准事件模型，原始事件模型
+    事件：用户和浏览器的一种交互操作
+    事件流：捕获阶段 - 目标阶段 - 冒泡阶段
+    捕获：   当我们给wimdow，document，body，div都添加点击事件，点击div时，触发点击事件是从最外层到最内层
+    冒泡：  和捕获阶段相反
+    
+    原始事件模型：只支持冒泡不支持捕获 onclick
+    标准事件模型：事件监听 ，第三个参数是布尔值，false是冒泡阶段，true就是捕获阶段
+
+typrof的缺点： 基本数据类型无法判断null
+              typeof null // 'object'
+              引用类型：对象(Object)、数组(Array)、函数(Function)
+              复杂数据类型 除了function 其他都是object
+
+instanceof:返回布尔值，能判断引用数据类型，但无法判断基本数据类型
+Object.prototype.toString.call()更佳
+
+ajax发请求步骤：创建xmlhttprequest实例对象
+                const xml = xmhttprequest
+                绑定onreadystatechange事件
+                onreadystatechange.readState是通信状态
+                0：open还没调用 1：send还没调用 2.返回了响应头响应状态 3.正在返回响应体 4。请求完成
+                和服务器建立连接
+                xhr.opne(method,url)
+                xhr.send([body]) 没有的话传空
+
+                eg：const request = new XMLHttpRequest()
+                    request.onreadystatechange = function(e){
+                        if(request.readyState === 4){ // 整个请求过程完毕
+                            if(request.status >= 200 && request.status <= 300){
+                                console.log(request.responseText) // 服务端返回的结果
+                            }else if(request.status >=400){
+                                console.log("错误信息：" + request.status)
+                            }
+                        }
+                    }
+                    request.open('POST','http://xxxx')
+                    request.send()
+
+
+web攻击：xss，csrf，sql
+    xss:跨站脚本攻击
+    crfs：跨站请求伪造
+    sql注入
+

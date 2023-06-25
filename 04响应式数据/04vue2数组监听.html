@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//订阅者模型
+let Dep ={
+    //容器里有很多订阅者的信息和唯一识别不同订阅者的key
+    clientlist:{},//容器
+    //添加订阅
+    listen:function(key,fn){
+       this.clientlist[key]? this.clientlist[key].push(fn) :this.clientlist[key] = []
+    }
+    
+    //发布订阅
+}
+
+</script>
+
+</html>

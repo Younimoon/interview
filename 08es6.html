@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+//新增数组方法
+// copyWithin()
+// find()、findIndex()
+
+
+// -----------------------------------------
+
+// fill()
+['a', 'b', 'c'].fill(7, 1, 2)
+// ['a', 7, 'c']
+['a', 'b', 'c'].fill(7)
+// [7, 7, 7]
+new Array(3).fill(7)
+// [7, 7, 7]
+
+// entries()，keys()，values()
+// includes()
+// flat()
+// flat进行数组扁平化，原数组不改变，返回新数组·
+[1, 2, [3, [4, 5]]].flat()
+// [1, 2, 3, [4, 5]]
+[1, 2, [3, [4, 5]]].flat(2)
+// [1, 2, 3, 4, 5]
+
+// copyWithin()
+
+// for of适用遍历数/数组对象/字符串/map/set等拥有迭代器对象（iterator）的集合
+// keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历
+
+
+for (let i of [1,2,3].keys()){
+  console.log(i);
+}
+//0,1,2
+
+console.log([1,2,3]);
+//解构数组
+// let [x, y] = [1, 2, 3];
+let [a, [b], d] = [1, [2, 3], 4];
+let [e, [f], g] = [1, [2, 3], 4];
+console.log(e,f,g);
+const math =Math.cos(1)
+console.log(math);
+
+//解构对象
+const data = { foo1: {name:'aaa'}, bar1: 'bbb' };
+//对解构对象进行重命名为f1，原本的属性名foo1将会失效，之后打印会报错
+let { foo1:f1 } =  data
+console.log(f1);
+// console.log(foo1.name);
+//报错
+
+let obj = {
+  p: [
+    'Hello',
+    { y: 'World' }
+  ],
+  q:'a'
+};
+// console.log(obj, '08es6.html-第54行')
+for(let i in obj){
+  console.log(obj[i], '08es6.html-第56行')
+}
+
+const {p} = obj
+let [msg,{y}] = p
+// console.log(msg,y);
+//对多重对象进行解构
+const node = {
+  loc: {
+    start: {
+      line: 1,
+      column: 5
+    }
+  }
+};
+const {loc: { start: { line,column }} } = node
+//原理如下
+// const {loc:name} = node
+// const {start} = name
+console.log(line,column);
+
+
+function fn(a=1,b=2){
+	console.log(a,b);
+}
+const N = {x:null}
+const {x=11,Y=11,z} = N
+// console.log(x,Y,z);
+fn()
+
+//箭头函数的this无法修改
+//无法通过构造函数实例化对象 
+//不能使用aguments变量
+//箭头函数的this指向,外层大括号的函数的指向就是箭头函数的this指向,没有外层的或者外层函数也是箭头函数的话this的指向就是window
+//箭头函数适用于与this无关的回调，定时器数组的方法回调
+
+const arr = [1,2,3,3]
+const result  = arr.filter((item)=>item%2 === 0 )
+console.log(result);
+
+//rest方法
+// function date(){
+//   console.log(Array.isArray(arguments));//false
+// }
+// date("1","2","3")
+function date(...args){
+   console.log(Array.isArray(args));
+}//true
+date(1,2,3)
+
+//扩展运算符
+const person = {
+  name:"huang",
+  age:18
+}
+ const P = [1,23,3]
+function fun(){
+  console.log(arguments);
+}
+fun(...P) 
+
+//只要是可遍历的对象都是可以执行for in 
+//for in循环打印的是数组索引 
+//for of循环打印的是数组元素
+for (let i in P){
+  console.log(i);
+}
+//数组可遍历的原理
+let iterator = P[Symbol.iterator]()
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+//定义一个可遍历的数据 
+//遍历num,返回数组属性的值
+// const num = {
+//   name:"123",
+//   age:123,
+//   person:[
+//     "123"  ,"143523",'123213'
+//   ],
+//   [Symbol.iterator](){
+//     let index = 0
+//     let _this = this
+//     return {
+//       next:function(){
+
+//           if(index < this.person.length){
+//             const result = {
+//               value:person[index],
+//               donde:false
+//             }
+//             index++
+//             return result
+//           }
+//           return {value:undefined,done:true}
+        
+//         }
+//       }
+//     }
+//   }
+  
+
+//生成器 generator
+ function *gen() {
+  console.log('hello generator');
+  
+ }
+ let gent = gen()
+ gent.next()
+
+ //一般对数组操作
+ //Set ，可以生成可遍历的对象数组
+const Arr1 = new Set()
+Arr1.add(1)
+console.log(typeof Arr1);
+
+const OBJ = {
+  name:"huang "
+}
+// set的内置方法：add,clear，delete,entires,foreach,has,keys,values
+ const ar = new Set([1,2,34])
+ for (let i of ar){
+  console.log(i, '08es6.html-第153行')
+ }
+ //ar是一个非数组集合
+ console.log(Array.from(ar), '08es6.html-第147行')
+//  查看元素个数
+const  size =  ar.size
+console.log(size);
+//  添加元素
+ ar.add(123)
+
+//  删除元素
+ ar.delete(2)
+//  是否存在某元素
+ ar.has(1) 
+//  清空
+ar.clear()
+
+// set实现数组去重
+let Arr = [1,1,23,45,6,67,7,8]
+//new set可直接对数组进行去重
+const result1 =[...new Set(Arr)] 
+console.log(result1);// [1, 23, 45, 6, 67, 7, 8]
+
+let arr1 = [1,23,321]
+let arr2 = [1,23,32113,1231]
+let arr3 = [...arr1,...arr2]
+console.log(new Set(arr3));
+
+
+//一般对对象操作
+//map的数据解构
+let m = new Map()
+m.set('name','younimoon')
+m.set('change',function(){
+  console.log('everything is change ');
+})
+let key = {
+  school:"wsz"
+
+}
+//增加
+// m.size()
+//删除
+// m.delete()
+//获取
+m.set(key,['1',"1",'123','12312321321'])
+//通过m.get(('key'))获取对应属性的值
+console.log(m.get(key));
+//清空
+// m.clear()
+//Map数据结构支持遍历
+for(let i of m ){
+  console.log(i);
+}
+
+
+//async外面的代码不会阻塞，async里面的await阻塞await后面的代码
+async function fn1() {
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve(2)
+    },1)
+  }).then(res=>{
+    console.log(res);
+  })
+  const res1 = await new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve(1)
+    },0)
+  })
+  console.log(res1)
+  // const res2 = await new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     // resolve(2)
+  //     console.log(2);
+  //   },5000)
+  // })
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     resolve(2)
+  //     // console.log(2);
+  //   },3000)
+  // }).then(res=>{
+  //   console.log(res);
+  // })
+  // console.log(res2)
+  // console.log(13123);
+}
+console.log(13212312);
+
+fn1()
+
+// Promise.all([p1,p2]).then(res=>{
+//   console.log(res);
+// }).catch(err=>{
+//   console.log(err);
+// })
+
+//es5cancat
+// arr1.concat(arr2)
+const arr4 = [1,2,3,4,5]
+//map的用法
+const arr5 = arr4.map(item=>{
+  return  item*2
+})
+console.log(arr5);
+
+//函数内部传入一个函数只需要传入形参名和参数
+function each(E){
+  E(10,20)
+}
+each(function Each(c,d){
+  console.log(c,d);
+})
+ 
+function myforeach(fun,arr=[11,22,33,11]){
+  for(let i = 0 ;i < arr.lrngth;i++){
+    fun(arr[i],i)
+  }
+}
+
+function fun(item,index){
+  console.log(item,index);
+}
+
+
+
+
+//this的指向：被调用的普通函数的this都看调用者，不看具具体调用位置
+var obj2 = {
+		a:1,
+		c:2,
+		say:function(a){
+            console.log("this1: "+this);
+            //this1+obj2
+			var sayA = function(a){
+				console.log("this2: "+this);
+				this.a = a;
+			};
+            function sayC(){
+                console.log("this3: "+this);
+            }
+			sayA(a);
+			sayC()
+		}
+	}
+	obj2.say(3);
+	console.log(obj2.a+"  "+obj2.c);
+	console.log(window.a+"  "+window.c);
+
+
+const obj4 = { 
+  abc:function(){
+    function cde (){
+      console.log(this);
+    }
+
+    console.log(a);
+    cde()
+   }
+}
+
+obj4.abc()
+
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+var person1 = new Person("张三",18);
+var person2 = Person("李四",12);
+console.log(person1);
+console.log(person2);
+console.log(person1.name,person1.age);
+console.log(window.name,window.age);
+</script>
+</html>

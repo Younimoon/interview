@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//监听对象属性
+const obj = {
+    //这种是不会实现数据监听，就是一个不会响应的数据
+    name:"younimoon",
+} 
+let age = 10
+
+//实现数据监听的方法
+//响应式数据
+Object.defineProperty(obj,"age",{
+    get(){
+        return age
+    },
+    set(newval){
+        age = newval
+        console.log('age修改了');
+    }
+})
+
+
+</script>
+</html>

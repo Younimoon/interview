@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    /* flex-goup是将父盒子剩下的主线的剩余空间进行分配比例就是flex-group的值 */
+    /* 不设置flex的话，flex的默认值为0  1  0  */  
+    /* 顺序 */
+    /* flex-grow，flex-shrink，flex-basis */
+    /* flex-shink和flex-group相反 ，父盒子的主线大小小于和子盒子的主线大小，*/
+    /* flex-basic是和width差不多,优先级比width高(如果flex-basic设置的auto则width的优先级更高)，
+    /* 但是如果设置的主线长度加上其他的盒子的主线长度大于了父盒子的主线长度则会压缩flex-basic */ 
+        .container{
+            width: 500px;
+            height: 200px;
+            background-color: red;
+            display: flex;
+            /* flex-flow: row-reverse  nowrap; */
+        }
+        .box1{
+            width: 300px;
+            height: 200px;
+            flex-basis: auto;
+            /* //根据内容撑开盒子 */
+            background-color: aqua;
+            /* flex-shrink: 3; */
+            /* flex-grow: 1; */
+        }
+        .box2,.box3{
+            width: 300px; 
+            background-color: red;
+            height: 200px;
+            /* flex-grow: 1; */
+            /* flex-basis: 200px; */
+            /* flex-shrink: 1; */
+        }
+        .box3{
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <!-- <div></div> -->
+    </div>
+
+</body>
+</html>

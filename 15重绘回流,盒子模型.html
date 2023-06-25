@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            box-sizing: border-box;
+            width: 100px;
+            /* 怪异盒模型的宽度就是100px */
+
+            height: 100px;
+            padding: 10px 10px ;
+            标准盒模型的宽度是
+            background-color: red
+        }
+    </style>
+</head>
+<body>
+    重绘：dom没有改变，只是样式发生了改变，
+    浏览器对这一现象进行单独渲染
+    回流：dom发生了改变，浏览器需要重新计算元素大小位置，其他元素也会受到一定的影响
+
+
+    //回流一定会引起重绘，但重绘不一定引起回流，回流消耗的性能更高
+
+
+    标准盒模型：box-sizing:content-box
+        content = width
+    怪异盒模型  box-sizing:border-box
+        width = content+padding+border
+    
+    <div class="box">123</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//原型也是原型对象
+//js中只有函数才具有原型;prototype
+//String、Number、Boolean、Array、Object、Function
+//等等都是 JS 内置的构造函数。
+//在 JS 中，由于一切皆接对象，所以它们也可以称为内置对象。
+
+let obj = {
+    name:"huang"
+}
+const fun =  function(){
+    console.log(123);
+}
+//
+console.log(obj);
+console.dir(fun);
+
+//创建一个函数
+function person(){
+
+}
+//给函数添加属性和方法
+person.prototype.name = 'younimoon'
+person.prototype.age = 10
+person.prototype.getage = function(){
+    console.log(this.age);
+}
+
+//创建一个实例对象,person这里充当一个构造函数的作用
+const Person = new person()
+console.log(Person.age);
+Person.sex = '男'
+Person.age = 18
+console.log(person.prototype);
+console.log(Person.__proto__);
+//Person.age是浏览器自动查找原型链找到的age，知道查找null为止，并爆出对应的代码错误，
+//Person这个对象本身是没有age属性，它只有sex属性
+// Person.age = 20
+
+//实例对象继承的是构造函数的原型
+//Person.__proto__=person.prototype
+// console.log(person.__proto__);
+//构造函数的原型继承的是Object的原型
+//person.__proto__ = Object.prototype
+
+//实例对象和Obejct继承的是Function对象
+//Function的继承的就是自己的原型
+
+console.log(person.__proto__);
+console.log(Object.__proto__);
+
+
+</script>
+</html>

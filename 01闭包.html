@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 全局变量的坏处：全局变量会污染局部变量，不会被gc回收
+    //闭包会常驻内存，慎用闭包，闭包的东西需要手动回收
+
+    //同一个块级是不可以用let const声明一个变量名
+    //不同的块级是支持的 
+    let a = 1
+    function fn(){
+        console.log(a);
+    }
+    // fn()
+
+    //闭包
+    function out(){
+        let a = 1 
+        let b = 2 
+        function inner(){
+            a++
+            console.log(a);
+            // return a
+        } 
+        return inner
+    }
+    out()()//2
+    out()()//2
+    //外部的引用地址不同都会重新创建地址
+    const ab = out()
+    ab()//2
+    ab()//3
+    const cd = out()
+    cd()//2
+    cd()//3
+    function fun(){
+        //这样就可以拿到out函数里面的a变量 
+        //通过定义变量去获取闭包返回的值是无法被gc回收的只有手动回收
+        const a = out()
+        const b = a()
+        console.log(b);
+    }
+    fun()
+</script>
+</html>

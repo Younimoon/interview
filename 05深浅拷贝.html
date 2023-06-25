@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//基本数据类型不存在深浅拷贝，只有引用类型有
+
+
+
+//数组的解构赋值
+//解构赋值的拷贝修改的是一维的属性或数组元素是深拷贝，二维以上是浅拷贝
+// let arr = [1,2,3]
+// let Arr = [...arr]
+// Arr.push(4)
+// console.log(arr,Arr);
+let obj = {
+    name:"huang",
+    friends:{
+        name:"sun",
+        age:12
+    }
+}
+
+let Obj = {...obj}
+Obj.friends.sex = '男'
+// console.log(Obj,obj);
+let arr = [[1,2],[3,4]]
+let Arr = [...arr]
+Arr[0].push(1)
+console.log(Arr,arr);
+
+//json方法深拷贝
+</script>
+</html>

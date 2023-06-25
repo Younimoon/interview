@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//splice 三个参数第一index，第二个删除的个数，第三个添加的value
+//原数组是删除后或者添加后的数组
+//新数组是删除的数据
+const arr = [1,2,3,4,5]
+const Arr = arr.splice(1,1,3,4)
+console.log(Arr,arr);
+
+//concat 给数组添加副本，如何数组值是简单数据类型就是深拷贝，反之则是浅拷贝
+//concat里面的参数只会影响新数组，不会影响原数组
+const arr_obj = [{name:1},{name:2},{name:3}]
+const arr_obj2 = arr_obj.concat({name:4})
+arr_obj2[0].sex = '男'
+console.log(arr_obj,arr_obj2);
+
+const arrr = [1,2,3,3]
+const arrr2 = arrr.concat(9)
+arrr2.push(6)
+console.log(arrr,arrr2);
+
+// unshif插入从队头 shif删除从队尾
+// push 和 pop 都是从对尾
+// arrr.shift()
+// arrr.pop()
+
+
+//slice 原数组上创建新数组
+//同样可进行拷贝，数组类型是复杂数据类型则进行浅拷贝
+//索引左闭右开区间
+const arrr3 = arr_obj.slice(1,3)
+console.log(arrr3);
+arrr3[1].sex='男'
+console.log(arr_obj);
+
+//indexOf
+//返回第一次找到对应数据的索引，若未找到则返回-1
+const num = arrr.indexOf(3)
+console.log(num);
+
+//迭代数组的方法
+// some 一个元素true 就返回TRUE
+//every 一个返回fasle 就返回false
+
+</script>
+</html>

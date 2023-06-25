@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="输入你想要的">
+    <div style="width: 100px;
+    height: 100px;background-color: red;">div</div>
+    <div class="box" style="width: 100px;height: 100px;background-color: pink;">box</div>
+</body>
+<script>
+
+const btn = document.querySelector('div')
+const box = document.querySelector('.box')
+
+//回调函数不加括号就是正常的执行
+
+// addEventListener后面的回调函数加了括号的话会立即执行，且只会执行一次
+// 后续执行的只会是该回调函数的return的函数
+
+//防抖函数
+//每次触发后，事件会重新计时相当于回城 
+btn.addEventListener('click',antiSnake(demo,2000))
+function antiSnake(fn,wait){
+    let timeout = null
+    return ()=>{
+        if(timeout) clearTimeout(timeout)
+        //if后面的执行语句没有return出去的话，后续代码仍会执行
+        //if后面只有一条执行语句省略的只是大括号
+        timeout = setTimeout(fn,wait)
+    }
+}
+function demo(){
+    console.log("发请求啦");
+}
+
+
+//节流函数
+//触发后一定事件内不能第二次触发，相当于技能cd
+box.addEventListener('click',throttle(demo,2000))
+function throttle(fn,wait){
+    let timer = null
+    return ()=>{
+        //不存在定时间
+        if(!timer){
+            timer = setTimeout(() => {
+                fn()
+                timer = null
+            }, wait);
+        }
+        return 
+    }
+}
+</script>
+</html>
